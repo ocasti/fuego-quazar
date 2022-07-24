@@ -9,8 +9,6 @@ import (
 )
 
 func Initialize() (*ctx.Handler, error) {
-
 	wire.Build(stdSet)
-
 	return &ctx.Handler{}, nil
 }
