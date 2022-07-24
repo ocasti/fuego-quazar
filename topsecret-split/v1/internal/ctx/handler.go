@@ -19,7 +19,7 @@ func (h *Handler) Handler(req events.APIGatewayProxyRequest) (events.APIGatewayP
 
 	return events.APIGatewayProxyResponse{
 		StatusCode: http.StatusOK,
-		Body:       "",
+		Body:       " ",
 	}, nil
 }
 
