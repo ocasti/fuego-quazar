@@ -2,13 +2,13 @@ package contracts
 
 type SatelliteDetail struct {
 	Name     string   `json:"name"`
-	Distance float64  `json:"distance"`
+	Distance float32  `json:"distance"`
 	Message  []string `json:"Message"`
 }
 
 type Coordinate struct {
-	X        float64
-	Y        float64
+	X        float32
+	Y        float32
 	Distance float32
 }
 
@@ -18,8 +18,8 @@ type Response struct {
 }
 
 type Position struct {
-	X float64 `json:"x"`
-	Y float64 `json:"y"`
+	X float32 `json:"x"`
+	Y float32 `json:"y"`
 }
 
 var MapCoordinates = map[string]Coordinate{

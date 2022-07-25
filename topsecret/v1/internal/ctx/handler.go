@@ -3,7 +3,7 @@ package ctx
 import (
 	"encoding/json"
 	cc "github.com/ocasti/fuego-quazar/common/contracts"
-	"github.com/ocasti/fuego-quazar/common/uc"
+	"github.com/ocasti/fuego-quazar/common/helper"
 	"github.com/ocasti/fuego-quazar/topsecret/v1/internal/contracts"
 	"net/http"
 
@@ -25,12 +25,12 @@ func (h *Handler) Handler(req events.APIGatewayProxyRequest) (events.APIGatewayP
 
 	for _, satellite := range r.Satellites {
 		mss = append(mss, satellite.Message)
-		pss = append(pss, float32(satellite.Distance))
+		pss = append(pss, satellite.Distance)
 	}
 
-	message := uc.GetMessage(mss...)
+	message := helper.GetMessage(mss...)
 
-	x, y, err := uc.GetLocation(pss...)
+	x, y, err := helper.GetLocation(pss...)
 	if err != nil {
 		return events.APIGatewayProxyResponse{
 			StatusCode: http.StatusNotFound,
@@ -39,8 +39,8 @@ func (h *Handler) Handler(req events.APIGatewayProxyRequest) (events.APIGatewayP
 
 	var response = cc.Response{
 		Position: cc.Position{
-			X: float64(x),
-			Y: float64(y),
+			X: x,
+			Y: y,
 		},
 		Message: message,
 	}

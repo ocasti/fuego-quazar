@@ -15,7 +15,6 @@ type SatelliteRepository struct {
 
 func (s *SatelliteRepository) Hydrate(items []map[string]*dynamodb.AttributeValue) ([]model.Satellite, error) {
 	satellites := make([]model.Satellite, len(items))
-
 	for i, item := range items {
 		satellites[i].SatelliteName = *item["sk"].S
 
@@ -24,7 +23,7 @@ func (s *SatelliteRepository) Hydrate(items []map[string]*dynamodb.AttributeValu
 			if err != nil {
 				return []model.Satellite{}, err
 			}
-			satellites[i].Distance = value
+			satellites[i].Distance = float32(value)
 		}
 
 		if v, ok := item["message"]; ok {

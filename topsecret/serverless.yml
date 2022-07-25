@@ -38,4 +38,3 @@ functions:
       - http:
           path: /topsecret
           method: post
-

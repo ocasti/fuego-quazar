@@ -1,4 +1,4 @@
-service: fq-top-secret
+service: fq-top-secret-split
 
 frameworkVersion: ${self:custom.active.serverless-version}
 
@@ -37,6 +37,4 @@ functions:
     events:
       - http:
           path: /topsecret-split
-          
           method: post
-

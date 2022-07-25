@@ -1,29 +1,31 @@
 package uc
 
 import (
-	cc "github.com/ocasti/fuego-quazar/common/contracts"
+	"encoding/json"
 	"github.com/ocasti/fuego-quazar/topsecret-split/v1/internal/contracts"
 	"github.com/ocasti/fuego-quazar/topsecret-split/v1/internal/model"
-	"github.com/ocasti/fuego-quazar/topsecret-split/v1/internal/repository"
-	"strings"
 )
 
 type PostLocationSatelliteUC struct {
 	SatelliteRepository contracts.SatelliteRepository
 }
 
-func (p *PostLocationSatelliteUC) Handler(request cc.SatelliteDetail) error {
-
+func (p *PostLocationSatelliteUC) Handler(request contracts.RequestBody) error {
+	message, err := json.Marshal(request.Message)
+	if err != nil {
+		return err
+	}
 	satellite := model.Satellite{
-		SatelliteName: request.Name,
+		SatelliteName: request.SatelliteName,
 		Distance:      request.Distance,
-		Message:       strings.Join(request.Message, ","),
+		Message:       string(message),
 	}
 
 	return p.SatelliteRepository.Save(satellite)
+
 }
 
-func NewPostLocationSatelliteUC(satelliteRepository *repository.SatelliteRepository) *PostLocationSatelliteUC {
+func NewPostLocationSatelliteUC(satelliteRepository contracts.SatelliteRepository) *PostLocationSatelliteUC {
 	return &PostLocationSatelliteUC{
 		SatelliteRepository: satelliteRepository,
 	}

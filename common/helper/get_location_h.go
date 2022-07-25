@@ -1,4 +1,4 @@
-package uc
+package helper
 
 import (
 	"github.com/ocasti/fuego-quazar/common/contracts"
@@ -7,20 +7,20 @@ import (
 
 func GetLocation(distances ...float32) (x, y float32, err error) {
 	kenobiCoordinate := trilateration.Point{
-		X: contracts.MapCoordinates["kenobi"].X,
-		Y: contracts.MapCoordinates["kenobi"].Y,
+		X: float64(contracts.MapCoordinates["kenobi"].X),
+		Y: float64(contracts.MapCoordinates["kenobi"].Y),
 		R: float64(distances[0]),
 	}
 
 	skywalkerCoordinate := trilateration.Point{
-		X: contracts.MapCoordinates["skywalker"].X,
-		Y: contracts.MapCoordinates["skywalker"].Y,
+		X: float64(contracts.MapCoordinates["skywalker"].X),
+		Y: float64(contracts.MapCoordinates["skywalker"].Y),
 		R: float64(distances[1]),
 	}
 
 	satoCoordinate := trilateration.Point{
-		X: contracts.MapCoordinates["sato"].X,
-		Y: contracts.MapCoordinates["sato"].Y,
+		X: float64(contracts.MapCoordinates["sato"].X),
+		Y: float64(contracts.MapCoordinates["sato"].Y),
 		R: float64(distances[2]),
 	}
 
