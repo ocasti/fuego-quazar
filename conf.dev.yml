@@ -1,0 +1,12 @@
+
+conf:
+  account:                        413264931754
+  deployment_prefix:              fuego-quazar
+  log_retention:                  3
+
+  serverless-version:             ">=2.72.3"
+
+  dynamodb_quasar_fire:               quasar_fire
+
+customDomain:
+  enabled:                                false
