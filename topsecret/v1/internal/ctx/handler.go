@@ -2,11 +2,12 @@ package ctx
 
 import (
 	"encoding/json"
-	"github.com/ocasti/fuego-quazar/topsecret/v1/internal/uc"
+	cc "github.com/ocasti/fuego-quazar/common/contracts"
+	"github.com/ocasti/fuego-quazar/common/uc"
+	"github.com/ocasti/fuego-quazar/topsecret/v1/internal/contracts"
 	"net/http"
 
 	"github.com/aws/aws-lambda-go/events"
-	"github.com/ocasti/fuego-quazar/topsecret/v1/internal/contracts"
 )
 
 type Handler struct {
@@ -36,8 +37,8 @@ func (h *Handler) Handler(req events.APIGatewayProxyRequest) (events.APIGatewayP
 		}, nil
 	}
 
-	var response = contracts.Response{
-		Position: contracts.Position{
+	var response = cc.Response{
+		Position: cc.Position{
 			X: float64(x),
 			Y: float64(y),
 		},

@@ -1,7 +1,7 @@
 package uc
 
 import (
-	"github.com/ocasti/fuego-quazar/topsecret/v1/internal/contracts"
+	"github.com/ocasti/fuego-quazar/common/contracts"
 	"github.com/savaki/trilateration"
 )
 
