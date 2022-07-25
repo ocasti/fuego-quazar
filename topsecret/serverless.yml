@@ -2,11 +2,8 @@ service: fq-top-secret
 
 frameworkVersion: ${self:custom.active.serverless-version}
 
-plugins:
-  - serverless-domain-manager
-
 custom:
-  active:       ${file(../../conf.${self:provider.stage}.yml):conf}
+  active:       ${file(../conf.${self:provider.stage}.yml):conf}
   serviceName: top-secret
 
 provider:
@@ -38,3 +35,4 @@ functions:
       - http:
           path: /topsecret
           method: post
+

@@ -8,7 +8,7 @@ type SatelliteRepository interface {
 }
 
 type GetTrilaterationUC interface {
-	Handler() (float32, float32, error)
+	Handler() (float32, float32, string, error)
 }
 
 type PostLocationSatelliteUC interface {

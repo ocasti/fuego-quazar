@@ -19,7 +19,7 @@ func (s *SatelliteRepository) Hydrate(items []map[string]*dynamodb.AttributeValu
 		satellites[i].SatelliteName = *item["sk"].S
 
 		if v, ok := item["distance"]; ok {
-			value, err := strconv.ParseFloat(*v.N, 64)
+			value, err := strconv.ParseFloat(*v.N, 32)
 			if err != nil {
 				return []model.Satellite{}, err
 			}

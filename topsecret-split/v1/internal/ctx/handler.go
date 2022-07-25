@@ -16,20 +16,23 @@ type Handler struct {
 
 func (h *Handler) Handler(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	switch req.HTTPMethod {
+
 	case http.MethodGet:
-		x, y, err := h.GetTrilaterationUC.Handler()
+		x, y, msg, err := h.GetTrilaterationUC.Handler()
+
 		if err != nil {
 			return events.APIGatewayProxyResponse{
 				StatusCode: http.StatusNotFound,
 				Body:       fmt.Sprintf(`{"message":%s}`, err.Error()),
 			}, nil
 		}
+
 		response := commonContracts.Response{
 			Position: commonContracts.Position{
 				X: x,
 				Y: y,
 			},
-			Message: "",
+			Message: msg,
 		}
 		body, err := json.Marshal(response)
 		if err != nil {

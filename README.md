@@ -2,7 +2,23 @@
 
 ## Diagrama de arquitectura
 
-## Instrucciones de ejecución
+## Instrucciones de lanzamiento
+- Se debe crear el archivo credentials en `~/.aws/credentials` con la siguiente estructura:
+
+  [default]
+  aws_access_key_id=
+  aws_secret_access_key=
+
+- Se debe tener previamente creada una tabla en dynamo llamada `quasar_fire`:
+    - Primary key `:pk string`
+    - Sort key `:sk string`
+- Descargar el repositorio
+- ingresar a la carpeta de cada lambda `topsecret` `topsecret-split` y ejecutar:
+    - `make build`
+    - `SLS deploy`
+    - Esperar a que finalice el despliegue, copiar las url generadas y usar los servicios.
+
+## Instrucciones de uso de los endpoints
 
 - Servicio topsecret:
 
@@ -40,7 +56,8 @@ Si no se logra determinar la posición y/o el mensaje la respuesta sera un códi
 
 -	Sericio topsecret-split:
 
-Para almacenar los datos de los satelites se debe consumir el servicio https://ieujht0egj.execute-api.us-east-1.amazonaws.com/dev/topsecret_split/{satellite_name} mediante `POST` remplazando `{satellite_name}` por `sato`, `kenobi` o `skywalker` y envíando el siguiente payload; la respuesta sera un código `200` si es satisfactoria, un `400` si el satelite no esta entre la lista `sato`, `kenobi` o `skywalker` o un `500` si hay un error al momento de almacenar los datos.
+Para almacenar los datos de los satelites se debe consumir el servicio https://5768n6lrpa.execute-api.us-east-1.amazonaws.com/dev/topsecret_split/{satellite_name}
+mediante `POST` remplazando `{satellite_name}` por `sato`, `kenobi` o `skywalker` y envíando el siguiente payload; la respuesta sera un código `200` si es satisfactoria, un `400` si el satelite no esta entre la lista `sato`, `kenobi` o `skywalker` o un `500` si hay un error al momento de almacenar los datos.
 
 ```json
 {
@@ -49,15 +66,15 @@ Para almacenar los datos de los satelites se debe consumir el servicio https://i
 }
 ```
 
-Para obtener los datos de localización se debe consumir el servicio https://ieujht0egj.execute-api.us-east-1.amazonaws.com/dev/topsecret_split/ mediante `GET`, si se logra determinar la posición usando los datos almacenados respondera:
+Para obtener los datos de localización se debe consumir el servicio https://5768n6lrpa.execute-api.us-east-1.amazonaws.com/dev/topsecret_split mediante `GET`, si se logra determinar la posición usando los datos almacenados respondera:
 
 ```json
 {
-	"position": {
-		"x": 70.3125,
-		"y": -284.375
-	},
-	"message": "este es un mensaje secreto"
+  "position": {
+    "x": 70.3125,
+    "y": -284.375
+  },
+  "message": "este es un mensaje secreto"
 }
 ```
 
